@@ -6,7 +6,7 @@ const { Footer } = Layout
 export default function TheFooter() {
   return (
     <Footer className={s.footer}>
-      Rentalann ©{new Date().getFullYear()} by PT. Bale Teknologi Bali
+      <strong>Data Dashboard</strong> by Indra Tanaya
     </Footer>
   )
 }

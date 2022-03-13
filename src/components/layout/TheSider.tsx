@@ -15,7 +15,7 @@ export default function TheSider({ isSiderCllps }: Props) {
       <div className={s.logo}>
         <Image
           src="/images/white-logo.png"
-          alt="Rentalann Logo"
+          alt="White Logo"
           width={135}
           height={40}
         />

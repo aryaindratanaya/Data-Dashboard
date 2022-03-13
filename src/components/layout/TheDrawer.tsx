@@ -22,7 +22,7 @@ export default function TheDrawer({ isDrawerVsbl, setDrawerVsbl }: Props) {
       <div className={s.logo}>
         <Image
           src="/images/white-logo.png"
-          alt="Rentalann Logo"
+          alt="White Logo"
           width={135}
           height={40}
         />
