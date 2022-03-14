@@ -1,21 +1,47 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Button } from 'antd'
-import s from 'styles/Home.module.css'
+import { Table } from 'antd'
 
 const SingleView: NextPage = () => {
+  const dataSource = [
+    {
+      key: '1',
+      name: 'Mike',
+      age: 32,
+      address: '10 Downing Street',
+    },
+    {
+      key: '2',
+      name: 'John',
+      age: 42,
+      address: '10 Downing Street',
+    },
+  ]
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+  ]
+
   return (
     <>
       <Head>
         <title>Data Dashboard - Single View</title>
       </Head>
-
-      <main>
-        <h1 className={s.mainHello}>Hi, this is the single-view page</h1>
-        <p>Below is an example of an Antd Button</p>
-        <Button type="primary">Button</Button>
-        <></>
-      </main>
+      <Table dataSource={dataSource} columns={columns} />;
     </>
   )
 }
