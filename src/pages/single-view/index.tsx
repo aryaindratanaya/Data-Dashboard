@@ -1,8 +1,9 @@
 import { useState, useCallback } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Papa from 'papaparse'
 import { useDropzone } from 'react-dropzone'
+
+const Papa = require('papaparse')
 
 const SingleView: NextPage = () => {
   // State that contained the data
