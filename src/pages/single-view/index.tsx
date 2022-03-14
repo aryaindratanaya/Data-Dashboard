@@ -1,47 +1,46 @@
+import { useState, useCallback } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Table } from 'antd'
+import Papa from 'papaparse'
+import { useDropzone } from 'react-dropzone'
 
 const SingleView: NextPage = () => {
-  const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-  ]
+  // State that contained the data
+  const [parsedCsvData, setParsedCsvData] = useState([])
 
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ]
+  // The Parser
+  const parseFile = (file: any) => {
+    Papa.parse(file, {
+      header: true,
+      complete: (results: any) => {
+        setParsedCsvData(results.data)
+      },
+    })
+  }
+
+  // The drop zone
+  const onDrop = useCallback((acceptedFiles) => {
+    parseFile(acceptedFiles[0])
+  }, [])
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+
+  // Displaying the data
+  console.log(parsedCsvData)
 
   return (
     <>
       <Head>
         <title>Data Dashboard - Single View</title>
       </Head>
-      <Table dataSource={dataSource} columns={columns} />;
+
+      <div {...getRootProps()}>
+        <input {...getInputProps()} />
+        {isDragActive ? (
+          <p>Drop the files here ...</p>
+        ) : (
+          <p>Drag and drop some files here, or click to select files</p>
+        )}
+      </div>
     </>
   )
 }
